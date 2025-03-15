@@ -1,4 +1,5 @@
 "use client"
+
 import React, { useState, useEffect, useMemo } from 'react'
 
 import HeaderBar from '@/app/components/header-bar'
@@ -6,6 +7,9 @@ import AdditionalFields from '@/app/components/additional-fields'
 import FindingsTable from '@/app/components/findings-table'
 import MetricsSelector from '@/app/components/metric-selector'
 import { calculateCvss31BaseScore, cvssSeverityFromScore } from '../../lib/cvss'
+
+import { handleExportHtml } from "../../lib/download"
+import styles from "./page.module.css"
 
 interface Finding {
   attackVector: string
@@ -103,7 +107,7 @@ export default function HomePage() {
 
   return (
     <div className="app">
-      <div className="container">
+      <div className={styles.container}>
         <HeaderBar 
           baseScore={baseScore}
           severity={severity}
@@ -146,6 +150,8 @@ export default function HomePage() {
 
         <h3 style={{ marginTop: 30 }}>Findings</h3>
         <FindingsTable findings={findings} />
+
+        <button className={[styles.btn + " " + styles.btnSelected]} onClick={() => handleExportHtml(findings)}>Download Findings</button>
       </div>
     </div> 
   )
