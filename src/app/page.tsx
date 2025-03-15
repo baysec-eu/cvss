@@ -10,22 +10,7 @@ import { calculateCvss31BaseScore, cvssSeverityFromScore } from '../../lib/cvss'
 
 import { handleExportHtml } from "../../lib/download"
 import styles from "./page.module.css"
-
-interface Finding {
-  attackVector: string
-  attackComplexity: string
-  privilegesRequired: string
-  userInteraction: string
-  scope: string
-  confidentiality: string
-  integrity: string
-  availability: string
-  nazwa: string
-  opis: string
-  obserwacje: string
-  score: number
-  severity: string
-}
+import { Finding } from '../../types/finding'
 
 export default function HomePage() {
   const [attackVector, setAttackVector] = useState<'N' | 'A' | 'L' | 'P'>('N')
@@ -40,6 +25,11 @@ export default function HomePage() {
   const [nazwa, setNazwa] = useState('')
   const [opis, setOpis] = useState('')
   const [obserwacje, setObserwacje] = useState('')
+  const [zakres, setZakres] = useState('')
+  const [referencje, setReferencje] = useState('')
+  const [prawdopodobienstwo, setPrawdopodobienstwo] = useState('')
+  const [ryzyko, setRyzyko] = useState('')
+  const [impakt, setImpakt] = useState('')
 
   const [baseScore, setBaseScore] = useState<number>(0.0)
   const [severity, setSeverity] = useState<string>('None')
@@ -94,9 +84,14 @@ export default function HomePage() {
       availability,
       nazwa,
       opis,
+      zakres,
+      referencje,
       obserwacje,
       score: baseScore,
       severity,
+      prawdopodobienstwo,
+      ryzyko,
+      impakt
     }
     setFindings((prev) => [...prev, newFinding])
 
@@ -108,12 +103,14 @@ export default function HomePage() {
   return (
     <div className="app">
       <div className={styles.container}>
-        <HeaderBar 
-          baseScore={baseScore}
-          severity={severity}
-        />
+        <div className={styles.headerBar}>
+          <HeaderBar 
+            baseScore={baseScore}
+            severity={severity}
+          />
+        </div>
 
-        <div style={{ display: 'flex' }}>
+        <div className={styles.metrics}>
           <MetricsSelector
             attackVector={attackVector}
             setAttackVector={setAttackVector}
@@ -141,6 +138,16 @@ export default function HomePage() {
             obserwacje={obserwacje}
             setObserwacje={setObserwacje}
             onAddFinding={handleAddFinding}
+            zakres={zakres}
+            setZakres={setZakres}
+            prawdopodobienstwo={prawdopodobienstwo}
+            setPrawdopodobienstwo={setPrawdopodobienstwo}
+            ryzyko={ryzyko}
+            setRyzyko={setRyzyko}
+            impakt={impakt}
+            setImpakt={setImpakt}
+            referencje={referencje}
+            setReferencje={setReferencje}
           />
         </div>
 

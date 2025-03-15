@@ -1,6 +1,9 @@
 "use client"
 import React from 'react'
 
+import styles from "../page.module.css"
+import { capitalizeFirstLetter } from '../../../lib/utils'
+
 interface HeaderBarProps {
   baseScore: number
   severity: string
@@ -11,10 +14,12 @@ export default function HeaderBar({
   severity,
 
 }: HeaderBarProps) {
+  const severityClassName = `score${capitalizeFirstLetter(severity)}`
+  console.log(severityClassName)
   return (
-    <div>
+    <div className={[styles[severityClassName], styles.score].join(" ")}>
       <span>Base Score</span>
-      <div>
+      <div className={styles.scoreBadge}>
         {baseScore.toFixed(1)} ({severity})
       </div>
     </div>

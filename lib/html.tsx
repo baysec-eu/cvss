@@ -114,14 +114,14 @@ export function generateStyledHtml(findings: Finding[]): string {
       <h2>${finding.nazwa}</h2>
       <table>
         <tr class="headerRow">
-          <th>CVSS STOPIEŃ</th>
+          <th>CVSS stopień</th>
           <td class="${isCritical ? 'critical' : ''}">${finding.severity}</td>
-          <th>CVSSv3 WYNIK</th>
+          <th>CVSSv3 wynik</th>
           <td>${finding.score.toFixed(1)}</td>
         </tr>
 
         <tr>
-          <th>CVSSv3 KRYTERIA</th>
+          <th>CVSSv3 kryteria</th>
           <td colspan="3">${criteriaText}</td>
         </tr>
 
@@ -133,32 +133,33 @@ export function generateStyledHtml(findings: Finding[]): string {
         </tr>
 
         <tr>
-          <th>OPIS</th>
+          <th>Opis</th>
           <td colspan="3">
             ${finding.opis ? finding.opis.replace(/\n/g, '<br/>') : '(brak)'}
           </td>
         </tr>
 
         <tr>
-          <th>OBSERWACJE</th>
+          <th>Obserwacje</th>
           <td colspan="3">
             ${finding.obserwacje ? finding.obserwacje.replace(/\n/g, '<br/>') : '(brak)'}
           </td>
         </tr>
 
         <tr>
-          <th>ZAGROŻENIE</th>
+          <th>Zagrożenie</th>
           <td colspan="3">
-            Prawdopodobieństwo wystąpienia: ${finding.severity}<br/>
-            Impact: ${finding.severity}
+            Ryzyko: ${finding.ryzyko} <br/>
+            Prawdopodobieństwo wystąpienia: ${finding.prawdopodobienstwo}<br/>
+            Impakt: ${finding.impakt}
           </td>
         </tr>
 
         <tr>
-          <th>REFERENCJE</th>
+          <th>Referencje</th>
           <td colspan="3">
             <ul>
-              <li><a href="XXXXX">XXXXX</a></li>
+              ${finding.referencje ? finding.referencje.replace(/\n/g, '<br/>') : '(brak)'}
             </ul>
           </td>
         </tr>

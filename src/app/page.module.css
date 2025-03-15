@@ -10,12 +10,17 @@
   font-family: Arial, sans-serif;
 }
 
+.metrics {
+  display: 'flex';
+  margin-bottom: '32px';
+  flex-direction: 'column';
+  width: 100%;
+}
+
 .headerBar {
   color: #fff;
   padding: 10px 15px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -26,23 +31,36 @@
 
 .scoreBadge {
   color: #fff;
-  padding: 8px 16px;
   border-radius: 4px;
   font-weight: bold;
   font-size: 1.4rem;
 }
+
+.score {
+  border-radius: 8px;
+  padding: 16px 16px;
+  text-align: center;
+  width: 180px;
+}
+
 .scoreNone { background-color: #999; }
 .scoreLow { background-color: #28a745; }
 .scoreMedium { background-color: #ffc107; }
-.scoreHigh { background-color: #fd7e14; }
-.scoreCritical { background-color: #dc3545; }
+.scoreHigh { background-color: #dc3545; }
+.scoreCritical { background-color: #000000; }
 
 .metricsRow {
   display: flex;
-  flex-wrap: wrap; 
+  flex-direction: row;
   justify-content: space-between;
   gap: 2rem;
   margin-bottom: 20px;
+}
+
+@media screen and (max-width: 700px) {
+  .metricsRow {
+      flex-wrap: wrap;
+  }
 }
 
 .metricsColumn {
