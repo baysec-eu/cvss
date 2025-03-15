@@ -151,7 +151,7 @@ export default function HomePage() {
         <h3 style={{ marginTop: 30 }}>Findings</h3>
         <FindingsTable findings={findings} />
 
-        <button className={[styles.btn + " " + styles.btnSelected]} onClick={() => handleExportHtml(findings)}>Download Findings</button>
+        <button className={[styles.btn, styles.btnSelected].join(" ")} onClick={() => handleExportHtml(findings)}>Download Findings</button>
       </div>
     </div> 
   )
