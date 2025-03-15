@@ -19,16 +19,15 @@ interface Finding {
 
 interface FindingsTableProps {
   findings: Finding[]
-  tableStyle: React.CSSProperties
 }
 
-export default function FindingsTable({ findings, tableStyle }: FindingsTableProps) {
+export default function FindingsTable({ findings }: FindingsTableProps) {
   if (findings.length === 0) {
     return <p>No findings yet.</p>
   }
 
   return (
-    <table style={tableStyle}>
+    <table>
       <thead>
         <tr>
           <th>Severity</th>

@@ -95,7 +95,7 @@ export default function HomePage() {
       severity,
     }
     setFindings((prev) => [...prev, newFinding])
-    
+
     setNazwa('')
     setOpis('')
     setObserwacje('')
