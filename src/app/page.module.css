@@ -47,13 +47,7 @@
 }
 
 .metricsColumn {
-  width: 50%;
-}
-
-@media (max-width: 600px) {
-  .metricsColumn {
-    width: 100%;
-  }
+  width: 100%;
 }
 
 .btn {
