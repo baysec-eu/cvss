@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "CVSS Calculator",
   description: "Advanced vulnerability scoring with CVSS v3.1 and v4.0 support",
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
