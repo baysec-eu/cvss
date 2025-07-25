@@ -292,6 +292,16 @@ export default function HomePage() {
           </div>
         </div>
 
+        <div 
+          onClick={() => {
+            navigator.clipboard.writeText(vectorString); 
+            alert(`Copied to clipboard:\n${vectorString}`)
+          }} 
+          className={styles.vectorBar}
+        >
+          {vectorString}
+        </div>
+
         <div className={styles.metrics}>
           <MetricsSelector
             cvssVersion={cvssVersion}
@@ -362,9 +372,6 @@ export default function HomePage() {
   
         </div>
 
-        <div className={styles.vectorBar}>
-          Vector String - {vectorString}
-        </div>
 
         {/* Help and Comparison Toggles */}
         <div className={styles.comparisonToggle}>

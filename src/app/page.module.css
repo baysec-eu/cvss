@@ -142,11 +142,11 @@
 .score {
   border-radius: 8px;
   padding: 12px;
+  color: white;
   text-align: center;
   min-width: 160px;
   box-shadow: var(--card-shadow);
   border: 2px solid transparent;
-  transition: all 0.3s ease;
 }
 
 .score:hover {
@@ -342,7 +342,6 @@
   display: flex;
   align-items: center;
   text-decoration: none;
-  transition: all 0.3s ease;
 }
 
 .logoLink:hover {
@@ -352,7 +351,6 @@
 .baysecLogo {
   height: 48px;
   width: auto;
-  transition: all 0.3s ease;
 }
 
 .baysecLogo:hover {
@@ -368,7 +366,6 @@
   margin-bottom: 8px;
   font-weight: 600;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
   background: var(--tertiary-bg);
   color: var(--primary-text);
   box-shadow: var(--shadow);
@@ -408,6 +405,7 @@
   border-radius: 12px;
   padding: 16px 20px;
   margin-top: 24px;
+  margin-bottom: 32px;
   color: #fff;
   font-weight: 600;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
@@ -489,7 +487,6 @@
   background: var(--primary-bg);
   color: var(--primary-text);
   font-size: 1rem;
-  transition: all 0.3s ease;
 }
 
 .lookupInput:focus {
@@ -571,7 +568,6 @@
   border-radius: 12px;
   padding: 20px;
   box-shadow: var(--shadow);
-  transition: all 0.3s ease;
 }
 
 .metricCard:hover {
@@ -635,7 +631,6 @@
 .epssProgress {
   height: 100%;
   background: var(--accent-color);
-  transition: width 0.5s ease;
 }
 
 .cvssVersion {
@@ -968,7 +963,6 @@
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.3s ease;
 }
 
 .helpLinks a:hover {
@@ -1004,7 +998,6 @@
   cursor: pointer;
   color: var(--primary-text);
   font-weight: 600;
-  transition: background-color 0.3s ease;
 }
 
 .helpSectionHeader:hover {
@@ -1422,7 +1415,6 @@
   border-radius: 6px;
   border: 1px solid var(--border-color);
   background: var(--primary-bg);
-  transition: all 0.3s ease;
   font-weight: 500;
 }
 
