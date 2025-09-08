@@ -453,13 +453,13 @@ export interface CVSSCalculationInput {
     console.log('🧪 Validating CVSS Calculations...')
     
     // Test CVSS v3.1: CVE-2017-0144 (WannaCry/EternalBlue)
-    // Expected: CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H = 9.8 Critical
+    // Expected: CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:H/A:H = 8.8 High
     const eternalBlue31 = calculateCvss31BaseScore({
       attackVector: 'N',
       attackComplexity: 'L', 
-      privilegesRequired: 'N',
+      privilegesRequired: 'L',
       userInteraction: 'N',
-      scope: 'C',
+      scope: 'U',
       confidentiality: 'H',
       integrity: 'H',
       availability: 'H'
@@ -495,13 +495,13 @@ export interface CVSSCalculationInput {
     })
 
     console.log('📊 Test Results:')
-    console.log(`EternalBlue CVSS v3.1: ${eternalBlue31.toFixed(1)} (Expected: ~9.8)`)
-    console.log(`XSS CVSS v3.1: ${xss31.toFixed(1)} (Expected: ~6.1)`)
+    console.log(`EternalBlue CVSS v3.1: ${eternalBlue31.toFixed(1)} (Expected: 8.8)`)
+    console.log(`XSS CVSS v3.1: ${xss31.toFixed(1)} (Expected: 6.1)`)
     console.log(`EternalBlue CVSS v4.0: ${eternalBlue40.toFixed(1)} (Should be similar to v3.1)`)
     
     const isValid = (
-      Math.abs(eternalBlue31 - 9.8) < 0.2 &&  // Allow small tolerance
-      Math.abs(xss31 - 6.1) < 0.2 &&
+      eternalBlue31 === 8.8 &&  // Must be exactly 8.8
+      xss31 === 6.1 &&          // Must be exactly 6.1
       Math.abs(eternalBlue40 - eternalBlue31) < 1.0  // v4.0 should be reasonably close
     )
     
