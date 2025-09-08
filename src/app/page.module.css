@@ -359,19 +359,18 @@
   display: flex;
   align-items: center;
   text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
 }
 
 .logoLink:hover {
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
 .baysecLogo {
   height: 48px;
   width: auto;
-}
-
-.baysecLogo:hover {
-  transform: scale(1.05);
+  user-select: none;
 }
 
 .btn {
@@ -1224,7 +1223,7 @@
   }
   
   .appHeader {
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: 16px;
     padding: 20px 16px;
     text-align: center;
@@ -1232,7 +1231,20 @@
   }
   
   .headerLeft {
-    justify-content: center;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .headerRight {
+    flex: 0 0 auto;
+  }
+  
+  .headerCenter {
+    flex: 1 1 100%;
+    order: 2;
+    margin-top: 12px;
   }
   
   
