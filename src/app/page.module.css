@@ -1,10 +1,11 @@
 .container { 
-  padding: 16px;
+  padding: 24px;
   align-items: center;
   justify-content: center;
   display: flex;
   flex-direction: column;
-  max-width: 1200px;
+  max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
   background: var(--primary-bg);
   color: var(--primary-text);
@@ -13,60 +14,32 @@
 
 .metrics {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   flex-direction: column;
   width: 100%;
   background: var(--secondary-bg);
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: var(--card-shadow);
+  border-radius: 0;
+  padding: 28px;
   border: 1px solid var(--border-color);
+  position: relative;
 }
 
-.headerBar {
-  margin-bottom: 16px;
-  width: 100%;
-}
-
-.headerContainer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  padding: 12px;
-  background: var(--secondary-bg);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border-color);
-}
 
 .versionBadge {
   background: var(--accent-color);
   color: white;
-  padding: 10px 16px;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 0.9rem;
-  box-shadow: var(--shadow);
+  padding: 12px 20px;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
 }
 
-.versionSelector {
-  margin-bottom: 16px;
-  text-align: center;
-  background: var(--secondary-bg);
-  border-radius: 8px;
-  padding: 12px;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border-color);
+.versionBadge:hover {
+  transform: translateY(-1px);
 }
 
-.versionSelector h3 {
-  margin-bottom: 16px;
-  color: var(--primary-text);
-  font-size: 1.2rem;
-  font-weight: 600;
-}
 
 /* App Header */
 .appHeader {
@@ -74,45 +47,57 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
-  padding: 16px 0;
+  padding: 24px 32px;
   background: var(--secondary-bg);
-  border-radius: 12px;
-  box-shadow: var(--card-shadow);
+  border-radius: 0;
   border: 1px solid var(--border-color);
-  padding: 16px 24px;
+  position: relative;
+  overflow: hidden;
 }
 
+
 .appTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  margin: 0 0 4px 0;
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.5px;
 }
 
 .appSubtitle {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: var(--secondary-text);
-  font-weight: 400;
+  font-weight: 500;
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
 /* Version Buttons */
 .versionButtons {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   justify-content: center;
   flex-wrap: wrap;
 }
 
 .versionButtons .btn {
-  min-width: 160px;
-  padding: 16px 20px;
+  min-width: 180px;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  padding: 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 }
+
 
 .versionLabel {
   font-size: 1rem;
@@ -132,68 +117,94 @@
 
 .scoreBadge {
   color: #fff;
-  border-radius: 8px;
-  font-weight: bold;
-  font-size: 1.4rem;
-  padding: 8px 12px;
-  box-shadow: var(--shadow);
+  border-radius: 0;
+  font-weight: 800;
+  font-size: 1.6rem;
+  padding: 4px 8px;
+  letter-spacing: -0.5px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 8px;
 }
 
 .score {
-  border-radius: 8px;
-  padding: 12px;
+  border-radius: 0;
+  padding: 16px 20px;
   color: white;
   text-align: center;
-  min-width: 160px;
-  box-shadow: var(--card-shadow);
+  min-width: 180px;
   border: 2px solid transparent;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.score::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.score:hover::before {
+  left: 100%;
 }
 
 .score:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.score span {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+  font-weight: 500;
 }
 
 .scoreNone { 
   background: #6c757d;
   border-color: #6c757d;
+  color: white;
 }
 .scoreLow { 
-  background: var(--success-color);
+  background: #4caf50;
   border-color: var(--success-color);
+  color: white;
 }
 .scoreMedium { 
-  background: var(--warning-color);
+  background: #ff9800;
   border-color: var(--warning-color);
+  color: white;
 }
 .scoreHigh { 
-  background: var(--danger-color);
+  background: #f44336;
   border-color: var(--danger-color);
+  color: white;
 }
 .scoreCritical { 
   background: #000000;
   border-color: #000000;
+  color: white;
 }
 
 .metricsContainer {
   width: 100%;
 }
 
-.metricsTitle {
-  text-align: center;
-  color: var(--primary-text);
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 24px;
-  padding-bottom: 16px;
-  border-bottom: 2px solid var(--border-color);
-}
-
 .metricsGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 20px;
+  gap: 28px;
+  margin-bottom: 24px;
 }
 
 .metricsGridV4 {
@@ -206,9 +217,12 @@
 .metricsSection {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: var(--shadow);
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.metricsSection:hover {
+  transform: translateY(-2px);
 }
 
 .sectionTitle {
@@ -223,9 +237,9 @@
 
 .impactSubsection {
   margin: 20px 0;
-  padding: 16px;
+  padding: 16px 0px;
   background: var(--tertiary-bg);
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
 }
 
@@ -236,7 +250,6 @@
   margin-bottom: 12px;
   text-align: center;
   padding-bottom: 8px;
-  border-bottom: 1px solid var(--border-color);
 }
 
 .metricsRow {
@@ -258,12 +271,16 @@
 }
 
 .metricGroup {
-  margin-bottom: 16px;
-  padding: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
   background: var(--primary-bg);
-  border-radius: 8px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow);
+  transition: all 0.2s ease;
+}
+
+.metricGroup:hover {
+  transform: translateY(-1px);
 }
 
 .metricTitle {
@@ -290,12 +307,14 @@
 }
 
 .btnLabel {
-  font-weight: 600;
+  font-weight: 700;
+  font-size: 1rem;
 }
 
 .btnCode {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   opacity: 0.8;
+  font-weight: 500;
 }
 
 .btnIcon {
@@ -307,10 +326,9 @@
   color: var(--primary-text);
   font-size: 1.1rem;
   font-weight: 600;
-  margin: 24px 0 16px 0;
   padding: 12px 16px;
   background: var(--tertiary-bg);
-  border-radius: 8px;
+  border-radius: 0;
   border-left: 4px solid var(--accent-color);
   text-align: center;
 }
@@ -331,10 +349,9 @@
 
 .headerCenter {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
   flex: 1;
-  text-align: center;
 }
 
 
@@ -359,30 +376,36 @@
 
 .btn {
   border: 2px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   cursor: pointer;
-  padding: 12px 16px;
-  margin-right: 8px;
-  margin-bottom: 8px;
+  padding: 16px;
+  margin-right: 10px;
+  margin-bottom: 10px;
   font-weight: 600;
-  font-size: 0.9rem;
-  background: var(--tertiary-bg);
+  font-size: 0.95rem;
+  background: var(--secondary-bg);
   color: var(--primary-text);
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  min-width: 80px;
+  justify-content: center;
+  gap: 6px;
+  min-width: 100px;
+  min-height: 100px;
+  width: 100px;
+  height: 100px;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+  border-color: var(--accent-color);
 }
 
 .btnUnselected {
-  background: var(--tertiary-bg);
+  background: var(--secondary-bg);
   color: var(--secondary-text);
   border-color: var(--border-color);
 }
@@ -397,35 +420,53 @@
   background: var(--accent-color);
   color: #fff;
   border-color: var(--accent-color);
-  box-shadow: 0 4px 12px rgba(45, 25, 53, 0.3);
+  transform: translateY(-1px);
 }
 
-.vectorBar {
-  background: var(--accent-color);
-  border-radius: 12px;
-  padding: 16px 20px;
-  margin-top: 24px;
-  margin-bottom: 32px;
-  color: #fff;
-  font-weight: 600;
-  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border-color);
-  word-break: break-all;
+.btnSelected:hover {
+  transform: translateY(-2px);
+}
+
+
+.scoreLabel {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.scoreValue {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  color: var(--primary-text);
 }
 
 /* Comparison Toggle */
 .comparisonToggle {
   text-align: center;
-  margin: 24px 0;
+  margin: 32px 0;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 .comparisonToggle .btn {
-  padding: 16px 32px;
-  font-size: 1rem;
+  padding: 18px 36px;
+  font-size: 1.05rem;
   font-weight: 600;
-  min-width: 220px;
-  box-shadow: var(--card-shadow);
+  min-width: 240px;
+  width: auto;
+  height: auto;
+  min-height: auto;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.comparisonToggle .btn:hover {
+  transform: translateY(-3px) scale(1.02);
 }
 
 .table {
@@ -453,10 +494,9 @@
 /* Vulnerability Lookup */
 .vulnerabilityLookup {
   background: var(--secondary-bg);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 24px;
   margin-bottom: 24px;
-  box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
 }
 
@@ -483,7 +523,7 @@
   flex: 1;
   padding: 12px 16px;
   border: 2px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   background: var(--primary-bg);
   color: var(--primary-text);
   font-size: 1rem;
@@ -513,7 +553,7 @@
   height: 100%;
   border: 2px solid transparent;
   border-top: 2px solid currentColor;
-  border-radius: 50%;
+  border-radius: 0;
   animation: spin 1s linear infinite;
 }
 
@@ -527,7 +567,7 @@
   color: var(--danger-color);
   background: rgba(244, 67, 54, 0.1);
   border: 1px solid var(--danger-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 12px 16px;
   margin-top: 12px;
   font-weight: 500;
@@ -536,10 +576,9 @@
 /* Enhanced Metrics */
 .enhancedMetrics {
   background: var(--secondary-bg);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 24px;
   margin-bottom: 24px;
-  box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
 }
 
@@ -565,14 +604,12 @@
 .metricCard {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 20px;
-  box-shadow: var(--shadow);
 }
 
 .metricCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .metricCard h4 {
@@ -623,7 +660,7 @@
 .epssBar {
   height: 8px;
   background: var(--tertiary-bg);
-  border-radius: 4px;
+  border-radius: 0;
   overflow: hidden;
   margin-top: 12px;
 }
@@ -639,6 +676,10 @@
 }
 
 @media (max-width: 768px) {
+  .container {
+    padding: 12px 4px;
+  }
+  
   .metricsGrid {
     grid-template-columns: 1fr;
   }
@@ -651,15 +692,36 @@
     width: 100%;
   }
   
+  .metrics {
+    padding: 16px 8px;
+  }
+  
+  .btn {
+    min-width: 85px;
+    min-height: 85px;
+    width: 85px;
+    height: 85px;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    padding: 12px;
+  }
+  
+  .btnLabel {
+    font-size: 0.9rem;
+  }
+  
+  .btnCode {
+    font-size: 0.75rem;
+  }
+  
 }
 
 /* CVSS Comparison Styles */
 .comparisonContainer {
   background: var(--secondary-bg);
-  border-radius: 16px;
+  border-radius: 0;
   padding: 32px;
   margin: 32px 0;
-  box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
 }
 
@@ -682,10 +744,9 @@
 
 .comparisonColumn {
   background: var(--primary-bg);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 24px;
   border: 1px solid var(--border-color);
-  box-shadow: var(--shadow);
 }
 
 .versionHeader {
@@ -708,7 +769,7 @@
   background: var(--accent-color);
   color: white;
   padding: 4px 12px;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -717,7 +778,7 @@
   background: var(--success-color);
   color: white;
   padding: 4px 12px;
-  border-radius: 6px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 600;
 }
@@ -734,18 +795,16 @@
   font-size: 2rem;
   padding: 16px;
   background: var(--primary-bg);
-  border-radius: 50%;
+  border-radius: 0;
   border: 2px solid var(--border-color);
-  box-shadow: var(--shadow);
 }
 
 .differenceCard, .recommendationCard {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 20px;
   text-align: center;
-  box-shadow: var(--shadow);
   width: 100%;
 }
 
@@ -801,7 +860,7 @@
 .vectorString {
   background: var(--tertiary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 8px 12px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
   font-size: 0.8rem;
@@ -852,7 +911,7 @@
 .additionalScore {
   background: var(--tertiary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 8px 12px;
   font-size: 0.85rem;
   display: flex;
@@ -892,9 +951,8 @@
 .featureColumn {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 20px;
-  box-shadow: var(--shadow);
 }
 
 .featureColumn h6 {
@@ -926,10 +984,9 @@
 /* Help Component Styles */
 .helpContainer {
   background: var(--secondary-bg);
-  border-radius: 12px;
+  border-radius: 0;
   padding: 24px;
   margin: 24px 0;
-  box-shadow: var(--card-shadow);
   border: 1px solid var(--border-color);
 }
 
@@ -959,7 +1016,7 @@
   background: var(--accent-color);
   color: white;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 0;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
@@ -973,7 +1030,7 @@
 .helpOverview {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 16px;
   margin-bottom: 20px;
   color: var(--primary-text);
@@ -983,7 +1040,7 @@
 .helpSection {
   margin-bottom: 16px;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   overflow: hidden;
 }
 
@@ -1028,9 +1085,8 @@
 .metricHelpCard {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 16px;
-  box-shadow: var(--shadow);
 }
 
 .metricHelpCard h4 {
@@ -1056,7 +1112,7 @@
 .metricValue {
   background: var(--primary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 6px;
+  border-radius: 0;
   padding: 12px;
 }
 
@@ -1071,7 +1127,7 @@
   background: var(--accent-color);
   color: white;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 0;
   font-weight: bold;
   font-size: 0.8rem;
   min-width: 24px;
@@ -1121,7 +1177,7 @@
 
 .scoreRange {
   padding: 8px 16px;
-  border-radius: 6px;
+  border-radius: 0;
   font-weight: 600;
   font-size: 0.9rem;
   text-align: center;
@@ -1172,16 +1228,13 @@
     gap: 16px;
     padding: 20px 16px;
     text-align: center;
+    margin-top: 20px;
   }
   
   .headerLeft {
     justify-content: center;
   }
   
-  .btn {
-    min-width: 70px;
-    padding: 10px 12px;
-  }
   
   .btnIcon {
     font-size: 1rem;
@@ -1233,7 +1286,7 @@
 .overviewSection {
   background: var(--tertiary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 16px;
 }
 
@@ -1247,7 +1300,7 @@
 .quickReference {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 20px;
   margin-top: 20px;
 }
@@ -1272,7 +1325,7 @@
   gap: 12px;
   padding: 12px;
   background: var(--primary-bg);
-  border-radius: 6px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
 }
 
@@ -1281,7 +1334,7 @@
   color: white;
   width: 24px;
   height: 24px;
-  border-radius: 50%;
+  border-radius: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1304,7 +1357,7 @@
   background: var(--tertiary-bg);
   color: var(--secondary-text);
   padding: 2px 8px;
-  border-radius: 12px;
+  border-radius: 0;
   font-size: 0.8rem;
   font-weight: 500;
 }
@@ -1320,7 +1373,7 @@
   background: var(--accent-color);
   color: white;
   padding: 2px 6px;
-  border-radius: 4px;
+  border-radius: 0;
   font-size: 0.7rem;
   font-weight: bold;
 }
@@ -1355,7 +1408,7 @@
 .scoringSection {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 20px;
 }
 
@@ -1379,10 +1432,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  border-radius: 8px;
+  border-radius: 0;
   font-weight: 600;
   color: white;
-  box-shadow: var(--shadow);
 }
 
 .scoreValue {
@@ -1398,7 +1450,7 @@
 .resourcesSection {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 20px;
 }
 
@@ -1412,7 +1464,7 @@
   color: var(--accent-color);
   text-decoration: none;
   padding: 8px 12px;
-  border-radius: 6px;
+  border-radius: 0;
   border: 1px solid var(--border-color);
   background: var(--primary-bg);
   font-weight: 500;

@@ -172,10 +172,10 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Exploit Code Maturity (E)',
       description: 'This metric measures the likelihood of the vulnerability being attacked.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
         { code: 'H', label: 'High', description: 'Functional autonomous code exists for widespread use.', example: 'Metasploit modules or public exploits' },
         { code: 'F', label: 'Functional', description: 'Functional exploit code is available with some preparation.', example: 'PoC code that needs modification' },
-        { code: 'P', label: 'Proof-of-Concept', description: 'Proof-of-concept exploit code exists.', example: 'Academic research or demonstration code' },
+        { code: 'P', label: 'PoC', description: 'Proof-of-concept exploit code exists.', example: 'Academic research or demonstration code' },
         { code: 'U', label: 'Unproven', description: 'No exploit code is available or unproven theory.', example: 'Theoretical vulnerability without working exploit' }
       ]
     },
@@ -184,7 +184,7 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Remediation Level (RL)',
       description: 'This metric measures the availability and effectiveness of remediation.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
         { code: 'U', label: 'Unavailable', description: 'There is no solution available or it is impossible to apply.', example: 'Zero-day with no patch available' },
         { code: 'W', label: 'Workaround', description: 'There is an unofficial, non-vendor solution available.', example: 'Community workarounds or configuration changes' },
         { code: 'T', label: 'Temporary Fix', description: 'There is an official but temporary fix available.', example: 'Beta patch or hotfix' },
@@ -196,7 +196,7 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Report Confidence (RC)',
       description: 'This metric measures the degree of confidence in the existence of the vulnerability.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Temporal score not calculated' },
         { code: 'C', label: 'Confirmed', description: 'Detailed reports exist with vendor acknowledgment.', example: 'CVE assigned with vendor confirmation' },
         { code: 'R', label: 'Reasonable', description: 'Significant details are published but incomplete.', example: 'Security advisory with some technical details' },
         { code: 'U', label: 'Unknown', description: 'Vulnerability details are unknown or unconfirmed.', example: 'Unverified security reports' }
@@ -210,7 +210,7 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Confidentiality Requirement (CR)',
       description: 'This metric enables the analyst to customize the CVSS score based on the importance of confidentiality.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
         { code: 'H', label: 'High', description: 'Loss of confidentiality is likely to have catastrophic impact.', example: 'Financial or healthcare data systems' },
         { code: 'M', label: 'Medium', description: 'Loss of confidentiality is likely to have serious impact.', example: 'Business-sensitive internal systems' },
         { code: 'L', label: 'Low', description: 'Loss of confidentiality is likely to have limited impact.', example: 'Public information systems' }
@@ -221,7 +221,7 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Integrity Requirement (IR)',
       description: 'This metric enables the analyst to customize the CVSS score based on the importance of integrity.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
         { code: 'H', label: 'High', description: 'Loss of integrity is likely to have catastrophic impact.', example: 'Critical infrastructure or safety systems' },
         { code: 'M', label: 'Medium', description: 'Loss of integrity is likely to have serious impact.', example: 'Business-critical applications' },
         { code: 'L', label: 'Low', description: 'Loss of integrity is likely to have limited impact.', example: 'Non-critical support systems' }
@@ -232,7 +232,7 @@ export default function CVSSHelp({ cvssVersion }: CVSSHelpProps) {
       name: 'Availability Requirement (AR)',
       description: 'This metric enables the analyst to customize the CVSS score based on the importance of availability.',
       values: [
-        { code: 'X', label: 'Not Defined', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
+        { code: 'X', label: 'N/A', description: 'The metric is not being used in score calculation.', example: 'Environmental score not calculated' },
         { code: 'H', label: 'High', description: 'Loss of availability is likely to have catastrophic impact.', example: 'Emergency response or life-safety systems' },
         { code: 'M', label: 'Medium', description: 'Loss of availability is likely to have serious impact.', example: 'Primary business services' },
         { code: 'L', label: 'Low', description: 'Loss of availability is likely to have limited impact.', example: 'Secondary or backup systems' }

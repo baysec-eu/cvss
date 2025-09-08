@@ -162,10 +162,6 @@ export default function MetricsSelector({
 
   return (
     <div className={styles.metricsContainer}>
-      <h3 className={styles.metricsTitle}>
-        🎯 Base Metrics
-      </h3>
-      
       <div className={cvssVersion === '4.0' ? styles.metricsGridV4 : styles.metricsGrid}>
         {/* Exploitability Metrics */}
         <div className={styles.metricsSection}>
@@ -709,10 +705,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(exploitCodeMaturity === "X")}`}
                     onClick={() => setExploitCodeMaturity("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -739,7 +735,7 @@ export default function MetricsSelector({
                     title="Proof-of-concept code exists"
                   >
                     <span className={styles.btnIcon}>🧪</span>
-                    <span className={styles.btnLabel}>Proof-of-Concept</span>
+                    <span className={styles.btnLabel}>PoC</span>
                     <span className={styles.btnCode}>(P)</span>
                   </button>
                   <button
@@ -764,10 +760,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(remediationLevel === "X")}`}
                     onClick={() => setRemediationLevel("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -819,10 +815,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(reportConfidence === "X")}`}
                     onClick={() => setReportConfidence("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -866,10 +862,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(exploitMaturity === "X")}`}
                     onClick={() => setExploitMaturity("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -896,7 +892,7 @@ export default function MetricsSelector({
                     title="Proof-of-concept code exists"
                   >
                     <span className={styles.btnIcon}>🧪</span>
-                    <span className={styles.btnLabel}>Proof-of-Concept</span>
+                    <span className={styles.btnLabel}>PoC</span>
                     <span className={styles.btnCode}>(P)</span>
                   </button>
                   <button
@@ -922,10 +918,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(confidentialityRequirement31 === "X")}`}
                     onClick={() => setConfidentialityRequirement31("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -968,10 +964,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(integrityRequirement31 === "X")}`}
                     onClick={() => setIntegrityRequirement31("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1014,10 +1010,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(availabilityRequirement31 === "X")}`}
                     onClick={() => setAvailabilityRequirement31("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1061,10 +1057,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(confidentialityRequirement === "X")}`}
                     onClick={() => setConfidentialityRequirement("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1107,10 +1103,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(integrityRequirement === "X")}`}
                     onClick={() => setIntegrityRequirement("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1153,10 +1149,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(availabilityRequirement === "X")}`}
                     onClick={() => setAvailabilityRequirement("X")}
-                    title="Not defined (default)"
+                    title="N/A (default)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1206,10 +1202,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedAttackVector === "X")}`}
                     onClick={() => setModifiedAttackVector("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1261,10 +1257,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedAttackComplexity === "X")}`}
                     onClick={() => setModifiedAttackComplexity("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1298,10 +1294,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedPrivilegesRequired === "X")}`}
                     onClick={() => setModifiedPrivilegesRequired("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1344,10 +1340,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedUserInteraction === "X")}`}
                     onClick={() => setModifiedUserInteraction("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1381,10 +1377,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedScope === "X")}`}
                     onClick={() => setModifiedScope("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1418,10 +1414,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedConfidentiality === "X")}`}
                     onClick={() => setModifiedConfidentiality("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1464,10 +1460,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedIntegrity === "X")}`}
                     onClick={() => setModifiedIntegrity("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button
@@ -1510,10 +1506,10 @@ export default function MetricsSelector({
                   <button
                     className={`${styles.btn} ${btnClass(modifiedAvailability === "X")}`}
                     onClick={() => setModifiedAvailability("X")}
-                    title="Not defined (use base metric)"
+                    title="N/A (use base metric)"
                   >
                     <span className={styles.btnIcon}>❓</span>
-                    <span className={styles.btnLabel}>Not Defined</span>
+                    <span className={styles.btnLabel}>N/A</span>
                     <span className={styles.btnCode}>(X)</span>
                   </button>
                   <button

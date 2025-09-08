@@ -37,12 +37,14 @@ body {
 
 :root {
   --primary-bg: #ffffff;
+  --primary-bg-rgb: 255, 255, 255;
   --secondary-bg: #f8f9fa;
   --tertiary-bg: #e9ecef;
   --primary-text: #212529;
   --secondary-text: #6c757d;
   --border-color: #dee2e6;
   --accent-color: #2D1935;
+  --accent-color-rgb: 45, 25, 53;
   --accent-secondary: #4A2C4E;
   --success-color: #4caf50;
   --warning-color: #ff9800;
@@ -53,12 +55,14 @@ body {
 
 [data-theme="dark"] {
   --primary-bg: #1a1a1a;
+  --primary-bg-rgb: 26, 26, 26;
   --secondary-bg: #2d2d2d;
   --tertiary-bg: #404040;
   --primary-text: #ffffff;
   --secondary-text: #b0b0b0;
   --border-color: #404040;
   --accent-color: #9d7bbe;
+  --accent-color-rgb: 157, 123, 190;
   --accent-secondary: #b89dd1;
   --success-color: #4caf50;
   --warning-color: #ff9800;
@@ -115,7 +119,7 @@ a {
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
-  border-radius: 4px;
+  border-radius: 0;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -126,7 +130,7 @@ a {
 .theme-toggle {
   background: var(--secondary-bg);
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 0;
   padding: 8px;
   cursor: pointer;
   display: flex;

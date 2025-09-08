@@ -641,4 +641,150 @@ export interface CVSSCalculationInput {
       threatLevel
     }
   }
+
+  export function parseCvssVector(vectorString: string): {
+    version: '3.1' | '4.0',
+    metrics: Partial<CVSS31CalculationInput & CVSS40CalculationInput>
+  } | null {
+    if (!vectorString) return null
+    
+    const parts = vectorString.split('/')
+    if (parts.length < 2) return null
+    
+    const versionPart = parts[0]
+    let version: '3.1' | '4.0'
+    
+    if (versionPart === 'CVSS:3.1') {
+      version = '3.1'
+    } else if (versionPart === 'CVSS:4.0') {
+      version = '4.0'
+    } else {
+      return null
+    }
+    
+    const metrics: Partial<CVSS31CalculationInput & CVSS40CalculationInput> = {}
+    
+    // Parse each metric
+    for (let i = 1; i < parts.length; i++) {
+      const [key, value] = parts[i].split(':')
+      if (!key || !value) continue
+      
+      switch (key) {
+        // Base metrics
+        case 'AV':
+          metrics.attackVector = value as 'N' | 'A' | 'L' | 'P'
+          break
+        case 'AC':
+          metrics.attackComplexity = value as 'L' | 'H'
+          break
+        case 'PR':
+          metrics.privilegesRequired = value as 'N' | 'L' | 'H'
+          break
+        case 'UI':
+          metrics.userInteraction = value as 'N' | 'R'
+          break
+        case 'S':
+          metrics.scope = value as 'U' | 'C'
+          break
+        case 'C':
+          metrics.confidentiality = value as 'N' | 'L' | 'H'
+          break
+        case 'I':
+          metrics.integrity = value as 'N' | 'L' | 'H'
+          break
+        case 'A':
+          metrics.availability = value as 'N' | 'L' | 'H'
+          break
+          
+        // CVSS 4.0 specific
+        case 'AT':
+          metrics.attackRequirements = value as 'N' | 'P'
+          break
+        case 'VC':
+          metrics.confidentiality = value as 'N' | 'L' | 'H'
+          break
+        case 'VI':
+          metrics.integrity = value as 'N' | 'L' | 'H'
+          break
+        case 'VA':
+          metrics.availability = value as 'N' | 'L' | 'H'
+          break
+        case 'SC':
+          metrics.subsequentSystemConfidentiality = value as 'N' | 'L' | 'H'
+          break
+        case 'SI':
+          metrics.subsequentSystemIntegrity = value as 'N' | 'L' | 'H'
+          break
+        case 'SA':
+          metrics.subsequentSystemAvailability = value as 'N' | 'L' | 'H'
+          break
+          
+        // Temporal metrics
+        case 'E':
+          if (version === '3.1') {
+            metrics.exploitCodeMaturity = value as 'X' | 'U' | 'P' | 'F' | 'H'
+          } else {
+            metrics.exploitMaturity = value as 'X' | 'U' | 'P' | 'F' | 'H'
+          }
+          break
+        case 'RL':
+          metrics.remediationLevel = value as 'X' | 'O' | 'T' | 'W' | 'U'
+          break
+        case 'RC':
+          metrics.reportConfidence = value as 'X' | 'U' | 'R' | 'C'
+          break
+          
+        // Environmental metrics
+        case 'CR':
+          if (version === '3.1') {
+            metrics.confidentialityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          } else {
+            metrics.confidentialityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          }
+          break
+        case 'IR':
+          if (version === '3.1') {
+            metrics.integrityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          } else {
+            metrics.integrityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          }
+          break
+        case 'AR':
+          if (version === '3.1') {
+            metrics.availabilityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          } else {
+            metrics.availabilityRequirement = value as 'X' | 'L' | 'M' | 'H'
+          }
+          break
+          
+        // Modified base metrics (CVSS 3.1)
+        case 'MAV':
+          metrics.modifiedAttackVector = value as 'X' | 'N' | 'A' | 'L' | 'P'
+          break
+        case 'MAC':
+          metrics.modifiedAttackComplexity = value as 'X' | 'L' | 'H'
+          break
+        case 'MPR':
+          metrics.modifiedPrivilegesRequired = value as 'X' | 'N' | 'L' | 'H'
+          break
+        case 'MUI':
+          metrics.modifiedUserInteraction = value as 'X' | 'N' | 'R'
+          break
+        case 'MS':
+          metrics.modifiedScope = value as 'X' | 'U' | 'C'
+          break
+        case 'MC':
+          metrics.modifiedConfidentiality = value as 'X' | 'N' | 'L' | 'H'
+          break
+        case 'MI':
+          metrics.modifiedIntegrity = value as 'X' | 'N' | 'L' | 'H'
+          break
+        case 'MA':
+          metrics.modifiedAvailability = value as 'X' | 'N' | 'L' | 'H'
+          break
+      }
+    }
+    
+    return { version, metrics }
+  }
   

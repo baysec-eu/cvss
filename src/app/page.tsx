@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 import Header from '@/app/components/header'
-import HeaderBar from '@/app/components/header-bar'
 import MetricsSelector from '@/app/components/metric-selector'
 import CVSSComparison from '@/app/components/cvss-comparison'
 import CVSSHelp from '@/app/components/cvss-help'
+import StickyHeader from '@/app/components/sticky-header'
 import { 
   calculateCvss31BaseScore, 
   calculateCvss31Temporal, 
@@ -17,6 +18,7 @@ import {
   calculateOverallScore,
   cvssSeverityFromScore, 
   generateCvssVector,
+  parseCvssVector,
   type CVSS31CalculationInput,
   type CVSS40CalculationInput,
   validateCvssCalculations 
@@ -25,6 +27,9 @@ import {
 import styles from "./page.module.css"
 
 export default function HomePage() {
+  const router = useRouter()
+  const searchParams = useSearchParams()
+  
   const [cvssVersion, setCvssVersion] = useState<'3.1' | '4.0'>('3.1')
   const [attackVector, setAttackVector] = useState<'N' | 'A' | 'L' | 'P'>('N')
   const [attackComplexity, setAttackComplexity] = useState<'L' | 'H'>('L')
@@ -70,9 +75,53 @@ export default function HomePage() {
   const [showComparison, setShowComparison] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
 
-  // Validate calculations on component mount
+  // Parse CVSS vector from URL on mount
   useEffect(() => {
     validateCvssCalculations()
+    
+    const hash = window.location.hash.slice(1) // Remove the # character
+    if (hash) {
+      const parsed = parseCvssVector(hash)
+      if (parsed) {
+        setCvssVersion(parsed.version)
+        if (parsed.metrics.attackVector) setAttackVector(parsed.metrics.attackVector)
+        if (parsed.metrics.attackComplexity) setAttackComplexity(parsed.metrics.attackComplexity)
+        if (parsed.metrics.privilegesRequired) setPrivilegesRequired(parsed.metrics.privilegesRequired)
+        if (parsed.metrics.userInteraction) setUserInteraction(parsed.metrics.userInteraction)
+        if (parsed.metrics.scope) setScope(parsed.metrics.scope)
+        if (parsed.metrics.confidentiality) setConfidentiality(parsed.metrics.confidentiality)
+        if (parsed.metrics.integrity) setIntegrity(parsed.metrics.integrity)
+        if (parsed.metrics.availability) setAvailability(parsed.metrics.availability)
+        
+        // CVSS 4.0 specific metrics
+        if (parsed.metrics.attackRequirements) setAttackRequirements(parsed.metrics.attackRequirements)
+        if (parsed.metrics.subsequentSystemConfidentiality) setSubsequentSystemConfidentiality(parsed.metrics.subsequentSystemConfidentiality)
+        if (parsed.metrics.subsequentSystemIntegrity) setSubsequentSystemIntegrity(parsed.metrics.subsequentSystemIntegrity)
+        if (parsed.metrics.subsequentSystemAvailability) setSubsequentSystemAvailability(parsed.metrics.subsequentSystemAvailability)
+        if (parsed.metrics.exploitMaturity) setExploitMaturity(parsed.metrics.exploitMaturity)
+        if (parsed.metrics.confidentialityRequirement && parsed.version === '4.0') setConfidentialityRequirement(parsed.metrics.confidentialityRequirement)
+        if (parsed.metrics.integrityRequirement && parsed.version === '4.0') setIntegrityRequirement(parsed.metrics.integrityRequirement)
+        if (parsed.metrics.availabilityRequirement && parsed.version === '4.0') setAvailabilityRequirement(parsed.metrics.availabilityRequirement)
+        
+        // CVSS 3.1 specific metrics
+        if (parsed.version === '3.1') {
+          if (parsed.metrics.exploitCodeMaturity) setExploitCodeMaturity(parsed.metrics.exploitCodeMaturity)
+          if (parsed.metrics.remediationLevel) setRemediationLevel(parsed.metrics.remediationLevel)
+          if (parsed.metrics.reportConfidence) setReportConfidence(parsed.metrics.reportConfidence)
+          if (parsed.metrics.modifiedAttackVector) setModifiedAttackVector(parsed.metrics.modifiedAttackVector)
+          if (parsed.metrics.modifiedAttackComplexity) setModifiedAttackComplexity(parsed.metrics.modifiedAttackComplexity)
+          if (parsed.metrics.modifiedPrivilegesRequired) setModifiedPrivilegesRequired(parsed.metrics.modifiedPrivilegesRequired)
+          if (parsed.metrics.modifiedUserInteraction) setModifiedUserInteraction(parsed.metrics.modifiedUserInteraction)
+          if (parsed.metrics.modifiedScope) setModifiedScope(parsed.metrics.modifiedScope)
+          if (parsed.metrics.modifiedConfidentiality) setModifiedConfidentiality(parsed.metrics.modifiedConfidentiality)
+          if (parsed.metrics.modifiedIntegrity) setModifiedIntegrity(parsed.metrics.modifiedIntegrity)
+          if (parsed.metrics.modifiedAvailability) setModifiedAvailability(parsed.metrics.modifiedAvailability)
+          if (parsed.metrics.confidentialityRequirement) setConfidentialityRequirement31(parsed.metrics.confidentialityRequirement)
+          if (parsed.metrics.integrityRequirement) setIntegrityRequirement31(parsed.metrics.integrityRequirement)
+          if (parsed.metrics.availabilityRequirement) setAvailabilityRequirement31(parsed.metrics.availabilityRequirement)
+        }
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -187,6 +236,11 @@ export default function HomePage() {
     availabilityRequirement31,
   ])
 
+  // Update URL when vector changes
+  const updateUrlWithVector = useCallback((vector: string) => {
+    window.location.hash = vector
+  }, [])
+
   const vectorString = useMemo(() => {
     if (cvssVersion === '3.1') {
       return generateCvssVector('3.1', {
@@ -251,56 +305,41 @@ export default function HomePage() {
     confidentialityRequirement,
     integrityRequirement,
     availabilityRequirement,
+    exploitCodeMaturity,
+    remediationLevel,
+    reportConfidence,
+    modifiedAttackVector,
+    modifiedAttackComplexity,
+    modifiedPrivilegesRequired,
+    modifiedUserInteraction,
+    modifiedScope,
+    modifiedConfidentiality,
+    modifiedIntegrity,
+    modifiedAvailability,
+    confidentialityRequirement31,
+    integrityRequirement31,
+    availabilityRequirement31,
   ])
+
+  // Update URL whenever the vector string changes
+  useEffect(() => {
+    if (vectorString) {
+      updateUrlWithVector(vectorString)
+    }
+  }, [vectorString, updateUrlWithVector])
 
 
 
   return (
     <div className="app">
-      <div className={styles.container}>
-        <Header />
-
-        <div className={styles.headerBar}>
-          <HeaderBar 
-            baseScore={baseScore}
-            temporalScore={temporalScore}
-            environmentalScore={environmentalScore}
-            overallScore={overallScore}
-            severity={severity}
-            overallSeverity={overallSeverity}
-            cvssVersion={cvssVersion}
-          />
-        </div>
-        
-        <div className={styles.versionSelector}>
-          <h3>CVSS Version</h3>
-          <div className={styles.versionButtons}>
-            <button
-              className={`${styles.btn} ${cvssVersion === '3.1' ? styles.btnSelected : styles.btnUnselected}`}
-              onClick={() => setCvssVersion('3.1')}
-            >
-              <span className={styles.versionLabel}>CVSS v3.1</span>
-              <span className={styles.versionDesc}>Industry Standard</span>
-            </button>
-            <button
-              className={`${styles.btn} ${cvssVersion === '4.0' ? styles.btnSelected : styles.btnUnselected}`}
-              onClick={() => setCvssVersion('4.0')}
-            >
-              <span className={styles.versionLabel}>CVSS v4.0</span>
-              <span className={styles.versionDesc}>Latest Version</span>
-            </button>
-          </div>
-        </div>
-
-        <div 
-          onClick={() => {
-            navigator.clipboard.writeText(vectorString); 
-            alert(`Copied to clipboard:\n${vectorString}`)
-          }} 
-          className={styles.vectorBar}
-        >
-          {vectorString}
-        </div>
+      <StickyHeader 
+        score={baseScore}
+        severity={severity}
+        vectorString={vectorString}
+        cvssVersion={cvssVersion}
+      />
+      <div className={styles.container} style={{ paddingTop: '80px' }}>
+        <Header cvssVersion={cvssVersion} setCvssVersion={setCvssVersion} />
 
         <div className={styles.metrics}>
           <MetricsSelector
