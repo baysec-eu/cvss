@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
 
 import Header from '@/app/components/header'
 import MetricsSelector from '@/app/components/metric-selector'
@@ -27,8 +26,6 @@ import {
 import styles from "./page.module.css"
 
 export default function HomePage() {
-  const router = useRouter()
-  const searchParams = useSearchParams()
   
   const [cvssVersion, setCvssVersion] = useState<'3.1' | '4.0'>('3.1')
   const [attackVector, setAttackVector] = useState<'N' | 'A' | 'L' | 'P'>('N')
