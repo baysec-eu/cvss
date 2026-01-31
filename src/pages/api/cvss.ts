@@ -4,7 +4,7 @@ import {
   calculateCvss31BaseScore,
   cvssSeverityFromScore,
   CVSSCalculationInput,
-} from '../../lib/cvss'
+} from '../../../lib/cvss'
 
 interface CVSSRequestBody extends CVSSCalculationInput {
   version: '3.1' | '4.0'
