@@ -11,14 +11,14 @@ interface HeaderProps {
 
 export default function Header({ cvssVersion, setCvssVersion }: HeaderProps) {
   const { theme } = useTheme()
-  
+
   return (
     <header className={styles.appHeader}>
       <div className={styles.headerLeft}>
         <a href="https://baysec.eu" target="_blank" rel="noopener noreferrer" className={styles.logoLink}>
-          <img 
+          <img
             src={theme === 'light' ? "/logo-lightmode.svg" : "/logo.svg"}
-            alt="Baysec Cybersecurity" 
+            alt="Baysec Cybersecurity"
             className={styles.baysecLogo}
           />
         </a>

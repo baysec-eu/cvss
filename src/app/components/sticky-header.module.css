@@ -168,17 +168,17 @@
     gap: 12px;
     padding: 12px 4px;
   }
-  
+
   .scoreSection {
     width: 100%;
     justify-content: space-between;
   }
-  
+
   .vectorSection {
     width: 100%;
     padding: 6px 12px;
   }
-  
+
   .vectorCode {
     font-size: 0.8rem;
   }

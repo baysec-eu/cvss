@@ -13,13 +13,13 @@ export default function StickyHeader({ score, severity, vectorString, cvssVersio
   const handleCopyVector = () => {
     const shareUrl = `${window.location.origin}${window.location.pathname}#${vectorString}`;
     navigator.clipboard.writeText(shareUrl);
-    
+
     // Show a temporary tooltip
     const tooltip = document.createElement('div');
     tooltip.textContent = 'Copied!';
     tooltip.className = styles.copyTooltip;
     document.body.appendChild(tooltip);
-    
+
     setTimeout(() => {
       tooltip.remove();
     }, 2000);
@@ -35,7 +35,7 @@ export default function StickyHeader({ score, severity, vectorString, cvssVersio
             <span className={styles.severityLabel}>{severity}</span>
           </div>
         </div>
-        
+
         <div className={styles.vectorSection} onClick={handleCopyVector}>
           <span className={styles.vectorLabel}>Vector:</span>
           <code className={styles.vectorCode}>{vectorString}</code>

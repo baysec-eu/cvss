@@ -1229,18 +1229,18 @@
     text-align: center;
     margin-top: 20px;
   }
-  
+
   .headerLeft {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
     gap: 12px;
   }
-  
+
   .headerRight {
     flex: 0 0 auto;
   }
-  
+
   .headerCenter {
     flex: 1 1 100%;
     order: 2;

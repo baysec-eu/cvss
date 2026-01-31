@@ -123,7 +123,9 @@ export default function HomePage() {
 
   useEffect(() => {
     let newScore = 0
-    
+    let newTemporalScore = 0
+    let newEnvironmentalScore = 0
+
     if (cvssVersion === '3.1') {
       const cvss31Input: CVSS31CalculationInput = {
         attackVector,
@@ -149,24 +151,20 @@ export default function HomePage() {
         integrityRequirement: integrityRequirement31,
         availabilityRequirement: availabilityRequirement31,
       }
-      
+
       newScore = calculateCvss31BaseScore(cvss31Input)
-      
+
       // Calculate CVSS 3.1 temporal score
       if (exploitCodeMaturity !== 'X' || remediationLevel !== 'X' || reportConfidence !== 'X') {
-        setTemporalScore(calculateCvss31Temporal(newScore, cvss31Input))
-      } else {
-        setTemporalScore(0)
+        newTemporalScore = calculateCvss31Temporal(newScore, cvss31Input)
       }
-      
+
       // Calculate CVSS 3.1 environmental score
       if (confidentialityRequirement31 !== 'X' || integrityRequirement31 !== 'X' || availabilityRequirement31 !== 'X' ||
           modifiedAttackVector !== 'X' || modifiedAttackComplexity !== 'X' || modifiedPrivilegesRequired !== 'X' ||
           modifiedUserInteraction !== 'X' || modifiedScope !== 'X' || modifiedConfidentiality !== 'X' ||
           modifiedIntegrity !== 'X' || modifiedAvailability !== 'X') {
-        setEnvironmentalScore(calculateCvss31Environmental(newScore, cvss31Input))
-      } else {
-        setEnvironmentalScore(0)
+        newEnvironmentalScore = calculateCvss31Environmental(newScore, cvss31Input)
       }
     } else {
       const cvss40Input: CVSS40CalculationInput = {
@@ -188,16 +186,23 @@ export default function HomePage() {
         availabilityRequirement,
       }
       newScore = calculateCvss40BaseScore(cvss40Input)
-      setTemporalScore(calculateCvss40Temporal(newScore, cvss40Input))
-      setEnvironmentalScore(calculateCvss40Environmental(newScore, cvss40Input))
+      newTemporalScore = calculateCvss40Temporal(newScore, cvss40Input)
+      newEnvironmentalScore = calculateCvss40Environmental(newScore, cvss40Input)
     }
-    
+
+    // Calculate overall score using the newly computed values (not stale state)
+    const newOverallScore = calculateOverallScore(
+      newScore,
+      newTemporalScore > 0 ? newTemporalScore : undefined,
+      newEnvironmentalScore > 0 ? newEnvironmentalScore : undefined
+    )
+
+    // Set all state at once
     setBaseScore(newScore)
-    setSeverity(cvssSeverityFromScore(newScore))
-    
-    // Calculate overall score
-    const newOverallScore = calculateOverallScore(newScore, temporalScore > 0 ? temporalScore : undefined, environmentalScore > 0 ? environmentalScore : undefined)
+    setTemporalScore(newTemporalScore)
+    setEnvironmentalScore(newEnvironmentalScore)
     setOverallScore(newOverallScore)
+    setSeverity(cvssSeverityFromScore(newScore))
     setOverallSeverity(cvssSeverityFromScore(newOverallScore))
   }, [
     cvssVersion,
