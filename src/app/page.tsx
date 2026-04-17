@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 
 import Header from '@/app/components/header'
 import MetricsSelector from '@/app/components/metric-selector'
@@ -71,6 +71,7 @@ export default function HomePage() {
   const [overallSeverity, setOverallSeverity] = useState<string>('None')
   const [showComparison, setShowComparison] = useState(false)
   const [showHelp, setShowHelp] = useState(false)
+  const mountedRef = useRef(false)
 
   // Parse CVSS vector from URL on mount
   useEffect(() => {
@@ -323,8 +324,12 @@ export default function HomePage() {
     availabilityRequirement31,
   ])
 
-  // Update URL whenever the vector string changes
+  // Update URL whenever the vector string changes (skip until hash is parsed and state settled)
   useEffect(() => {
+    if (!mountedRef.current) {
+      mountedRef.current = true
+      return
+    }
     if (vectorString) {
       updateUrlWithVector(vectorString)
     }
